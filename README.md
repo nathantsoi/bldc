@@ -102,13 +102,16 @@ sudo udevadm trigger
 
 ### On MacOS
 
-Go to the [GNU ARM embedded toolchain downloads Website](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads) and select the mac version, download it and extract it to your user directory.
+Install arm gnu gcc 7. Note that version 7 must be used, [otherwise timing errors can occur](https://github.com/vedderb/bldc/issues/84).
 
-Append the bin directory to your **$PATH**. For example:
+```
+./scripts/setup.sh
+```
 
+Then add the newly installed toolchain to your path:
 
-```bash
-export PATH="$PATH:/Users/your-name/gcc-arm-none-eabi-8-2019-q3-update/bin/"
+```
+export PATH=$(pwd)/toolchain/bin:${PATH}
 ```
 
 Install stlink and openocd
@@ -136,6 +139,12 @@ Flash it using an STLink SWD debugger
 ```bash
 make upload
 ```
+
+## Debugging
+
+Install [Eclipse Embedded](https://projects.eclipse.org/projects/iot.embed-cdt/downloads) and import the project as a makefile project
+
+Create a new OpenOCD Debugging profile and include the same options as specified in the Makefile's `make upload` target
 
 ## Contribute
 
