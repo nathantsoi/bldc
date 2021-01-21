@@ -124,19 +124,22 @@ brew install openocd
 
 ## Build
 
-Build and flash the [bootloader](https://github.com/vedderb/bldc-bootloader) first
+### Bootloader
+
+The [bootloader](https://github.com/vedderb/bldc-bootloader) is included in the main firmware, so no need to flash it separately.
 
 Clone and build the firmware
 
 ```bash
-git clone https://github.com/vedderb/bldc.git vesc_firmware
+git clone https://github.com/nathantsoi/bldc.git vesc_firmware
 cd vesc_firmware
 make
 ```
 
-Flash it using an STLink SWD debugger
+Make and flash the firmware using an STLink SWD debugger
 
 ```bash
+export PATH=$(pwd)/toolchain/bin:${PATH}
 make upload
 ```
 
